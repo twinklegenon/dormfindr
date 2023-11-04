@@ -1,0 +1,88 @@
+.login-signup {
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  
+  .image-container {
+    position: relative;
+  }
+  
+  .image1-container,
+  .image2-container,
+  .image3-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Button Styles */
+  .login-button {
+    background-color: #E7A523;
+    color: black;
+    border: none;
+    top: 67%;
+    left: 7%;
+    border-radius: 20px;
+    padding: 15px 60px;
+    margin: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    position: absolute;
+    z-index: 1;
+  }
+  
+  .login-button:hover {
+    background-color: #ffd272;
+  }
+  
+  .signup-button {
+    background-color: #E7A523;
+    color: black;
+    border: none;
+    top: 67%;
+    left: 20%;
+    border-radius: 20px;
+    padding: 15px 60px;
+    margin: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    position: absolute;
+    z-index: 1;
+  }
+  
+  .signup-button:hover {
+    background-color: #ffd272;
+  }
+  
+  .lessor-button {
+    background-color: #E7A523;
+    color: black;
+    border: none;
+    top: 66.5%;
+    border-radius: 20px;
+    padding: 15px 35px;
+    margin: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    position: absolute;
+    z-index: 1;
+  }
+  
+  .lessor-button:hover {
+    background-color: #ffd272;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
