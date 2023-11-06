@@ -1,21 +1,34 @@
-// SignUpScreen.js
-
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./SignUpScreen.css";
 import backgroundImage from "../images/bg.png";
-import user from "../images/user.png"; 
+import user from "../images/user.png";
 
 const SignUpScreen = () => {
+  const navigate = useNavigate();
+  const [selectedRole, setSelectedRole] = useState("Student");
+
+  const handleRoleChange = (event) => {
+    setSelectedRole(event.target.value);
+  };
+
+  const handleSignUp = () => {
+    // Perform your authentication logic here
+    // If authentication is successful, navigate to the HomeScreen
+    navigate("/account-verification");
+  };
+
+  const goToTerms = () => {
+    navigate("/terms");
+  };
+
   return (
-    <div
-      className="signup-screen"
-      style={{ backgroundImage: `url(${backgroundImage})` }}
-    >
-        <img src={user} alt="Logo" />
+    <div className="signup-screen" style={{ backgroundImage: `url(${backgroundImage})` }}>
+      <img src={user} alt="Logo" />
       <div className="signup-container">
-        <h2>Sign Up</h2>
+        <h2>Create an Account</h2>
         <div className="input2-container">
-          <input type="text" placeholder="Enter your Username" />
+          <input type="text" placeholder="Enter your Name" />
         </div>
         <div className="input2-container">
           <input type="text" placeholder="Enter your Email" />
@@ -26,11 +39,21 @@ const SignUpScreen = () => {
         <div className="input2-container">
           <input type="password" placeholder="Confirm Password" />
         </div>
-        <button className="signup-click">Sign Up</button>
+        <div className="role-dropdown-container">
+          <select value={selectedRole} onChange={handleRoleChange}>
+            <option value="Student">Student</option>
+            <option value="Faculty">Faculty</option>
+            <option value="Staff">Staff</option>
+            <option value="Dormitory Provider">Dormitory Provider</option>
+          </select>
+        </div>
+        <button className="signup-click" onClick={handleSignUp}>Sign Up as {selectedRole}</button>
         <p>
           Already have an account? <a href="/login">Log In</a>
-          <br></br>
-          <b href="/terms">Terms</b> and <b href="/privacy">Privacy Policy</b>
+          <br />
+          <b href="/terms" onClick={goToTerms}>Terms </b> 
+          and 
+          <b href="/terms" onClick={goToTerms}> Conditions</b>
         </p>
       </div>
     </div>

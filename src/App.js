@@ -8,6 +8,10 @@ import HomeScreen from "./navigations/HomeScreen";
 import FindADormScreen from "./navigations/FindADormScreen"
 import AboutUsScreen from "./navigations/AboutUsScreen";
 import HelpScreen from "./navigations/HelpScreen";
+import AccountVerificationScreen from "./user/AccountVerificationScreen";
+import Terms from "./user/TermsScreen";
+import BeOneScreen from "./user/BeOneScreen";
+import OTPScreen from "./user/OTPScreen";
 
 function App() {
   return (
@@ -22,6 +26,10 @@ function App() {
           <Route path="/find-a-dorm" element={<FindADormScreen />} />
           <Route path="/about-us" element={<AboutUsScreen />} />
           <Route path="/help" element={<HelpScreen />} />
+          <Route path="/account-verification" element={<AccountVerificationScreen />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/beone" element={<BeOneScreen />} />
+          <Route path="/OTP" element={<OTPScreen />} />
         </Routes>
       </div>
     </Router>
