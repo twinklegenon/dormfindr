@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { getProfiles, getProfile, createProfile, deleteProfile, updateProfile, signUp } = require('../controllers/SignUpController');
+const { getProfiles, getProfile, createProfile, deleteProfile, updateProfile } = require('../controllers/SignUpController');
 const { validateEmailDomain, validationResult } = require('../middleware/validateEmailDomain');
 
 // GET all profiles
@@ -15,7 +15,7 @@ router.post('/', [validateEmailDomain], (req, res) => {
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
-  createProfile(req, res); // Assuming signUp is the same as createProfile
+  createProfile(req, res);
 });
 
 // DELETE a profile by ID

@@ -1,71 +1,68 @@
-const profileCon = require('../models/SignUpModel');
-const mongoose = require('mongoose')
-// get all 
+const mongoose = require('mongoose');
+const Profile = require('../models/SignUpModel'); // Assuming the file name is Profile.js
+
+// Get all profiles
 const getProfiles = async (req, res) => {
-  const getProfiles = await profileCon.find({}).sort({createdAT: -1})
-  res.status(200).json(getProfiles)
-}
-// get single
+  const profiles = await Profile.find({}).sort({createdAt: -1});
+  res.status(200).json(profiles);
+};
+
+// Get single profile
 const getProfile = async (req, res) => {
-  const { id } = req.params 
+  const { id } = req.params;
 
   if (!mongoose.Types.ObjectId.isValid(id)){
-    return res.status(404).json({error: 'No such Profile'})
+    return res.status(404).json({error: 'No such Profile'});
   }
 
-  const ggetProfile= await profileCon.findById(id)
-  if (!getProfile) {
-    return res.status(404).json({error: 'No such Profile'})
+  const profile = await Profile.findById(id);
+  if (!profile) {
+    return res.status(404).json({error: 'No such Profile'});
   }
-  res.status(200).json(getProfile)
-}
+  res.status(200).json(profile);
+};
 
-// new workout
-const createProfile  = async(req, res) => {
-    const {email, fullName, password, confirmPass} = req.body
-    // add doc to db
-    try{
-      const getProfile = await profileCon.create({
-        fullName: fullName, 
-        email: email, 
-        password: password,
-        confirmPass: confirmPass})
-      res.status(200).json(getProfile)
-    } catch (error){
-      res.status(400).json({error:error.message})
-    }
+// Create new profile
+const createProfile = async (req, res) => {
+  const { username, email, password } = req.body;
+
+  try {
+    const profile = await Profile.create({ username, email, password });
+    res.status(200).json(profile);
+  } catch (error) {
+    res.status(400).json({error: error.message});
   }
+};
 
-//delete workout
+// Delete profile
 const deleteProfile = async (req, res) => {
-  const { id } = req.params 
+  const { id } = req.params;
 
   if (!mongoose.Types.ObjectId.isValid(id)){
-    return res.status(404).json({error: 'No such Profile'})
+    return res.status(404).json({error: 'No such Profile'});
   }
-  const getProfile = await profileCon.findOneAndDelete({_id: id})
+  
+  const profile = await Profile.findOneAndDelete({_id: id});
+  if (!profile) {
+    return res.status(404).json({error: 'No such Profile'});
+  }
+  res.status(200).json(profile);
+};
 
-  if (! getProfile) {
-    return res.status(404).json({error: 'No such Profile'})
-  } 
-  res.status(200).json( getProfile)
-}
-
+// Update profile
 const updateProfile = async (req, res) => {
-  const { id } = req.params 
+  const { id } = req.params;
 
   if (!mongoose.Types.ObjectId.isValid(id)){
-    return res.status(404).json({error: 'No such Profile'})
+    return res.status(404).json({error: 'No such Profile'});
   }
 
-  const getProfile = await profileCon.findOneAndUpdate({_id: id}, {
-    ...req.body
-  })
-  if (!getdorm ) {
-    return res.status(404).json({error: 'No such Profile'})
-  } 
-  res.status(200).json(getProfile)
-}
+  const profile = await Profile.findOneAndUpdate({_id: id}, {...req.body});
+  if (!profile) {
+    return res.status(404).json({error: 'No such Profile'});
+  }
+  res.status(200).json(profile);
+};
 
 module.exports = {
   getProfiles,
@@ -73,4 +70,4 @@ module.exports = {
   createProfile,
   deleteProfile,
   updateProfile
-}
+};

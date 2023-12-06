@@ -8,13 +8,18 @@ const { check, validationResult } = require('express-validator');
 const dormfindrRoutes = require('./routes/dormListing');
 const dormfindrRoutes2 = require('./routes/SignUp');
 const loginRoutes = require('./routes/login'); // Require the login routes
+const verificationRoutes = require('./routes/verification');
+const cors = require('cors');
 
 // express app
 const app = express();
+app.use(cors({
+  origin: 'http://localhost:3000' // Replace with your frontend domain
+}));
 
 // middleware
-app.use(bodyParser.json()); // Body parser middleware to parse JSON bodies
 app.use(express.json()); // Built-in middleware to parse JSON bodies
+//app.use('/api', verificationRoutes);
 
 // Simple logging middleware
 app.use((req, res, next) => {
@@ -22,10 +27,17 @@ app.use((req, res, next) => {
   next();
 });
 
-// routes
+// API routes
 app.use('/api/dormfindr/dormlisting', dormfindrRoutes);
 app.use('/api/dormfindr/signup', dormfindrRoutes2);
-app.use('/api/dormfindr/login', loginRoutes); // Use the login routes
+app.use('/api/dormfindr/login', loginRoutes);
+app.use('/api', verificationRoutes);
+
+// Error handling middleware
+app.use((error, req, res, next) => {
+  console.error(error);
+  res.status(error.status || 500).json({ message: error.message || 'Internal Server Error' });
+});
 
 // connect to db
 mongoose.connect(process.env.MONGO_URI)
@@ -36,5 +48,5 @@ mongoose.connect(process.env.MONGO_URI)
     });
   })
   .catch((error) => {
-    console.log(error);
+    console.error('Database connection failed:', error);
   });

@@ -1,0 +1,15 @@
+.splash-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  
+  .logo {
+    height: 192px;
+    width: 500px;
+  }
+  

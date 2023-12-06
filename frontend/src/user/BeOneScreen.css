@@ -1,0 +1,46 @@
+.Be-One-screen {
+  width: auto;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  }
+  
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .Be-One-container {
+    position: relative;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  .button-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .return {
+    background-color: #E7A523;
+    color: black;
+    border: none;
+    border-radius: 20px;
+    padding: 15px 75px;
+    margin-top: 450px;
+    margin-right: 1135px;
+    font-size: 18px;
+    cursor: pointer;
+    position: absolute;
+
+  }
+  
+  .return:hover {
+    background-color: #E7D523;
+  }
