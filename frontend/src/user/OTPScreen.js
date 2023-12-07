@@ -1,4 +1,3 @@
-
 import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import fadpage1 from "../images/bg.png";
@@ -8,9 +7,35 @@ import "./OTPScreen.css";
 const OTPScreen = () => {
   const navigate = useNavigate();
   const [otp, setOTP] = useState("");
+  const [verificationStatus, setVerificationStatus] = useState(null); // To store the OTP verification result
 
   const handleOTPChange = (e) => {
     setOTP(e.target.value);
+  };
+
+  const verifyOTP = async () => {
+    try {
+      const response = await fetch('http://localhost:3000/verifyOTP', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ enteredOTP: otp }),
+      });
+
+      const data = await response.json();
+      if (data.isVerified) {
+        // OTP is correct
+        setVerificationStatus("OTP verified successfully.");
+        navigate("/login");
+      } else {
+        // OTP is incorrect
+        setVerificationStatus("Incorrect OTP. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error verifying OTP:", error);
+      setVerificationStatus("Error verifying OTP. Please try again later.");
+    }
   };
 
   const goToSignUp = () => {
@@ -48,9 +73,12 @@ const OTPScreen = () => {
         <button className="go-back-button" onClick={goToSignUp}>
           Go Back
         </button>
-        <button className="submit-button" onClick={goToLogInScreen}>
+        <button className="submit-button" onClick={verifyOTP}>
           Submit
         </button>
+        {verificationStatus && (
+          <div className="verification-status">{verificationStatus}</div>
+        )}
       </div>
     </div>
   );

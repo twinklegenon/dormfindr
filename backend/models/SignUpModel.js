@@ -14,6 +14,10 @@ const ProfileSchema = new Schema({
     type: String,
     required: true
   },
+  verified: {
+    type: Boolean,
+    default: false,
+  }
 }, { timestamps: true });
 
 module.exports = mongoose.model('Profile', ProfileSchema);

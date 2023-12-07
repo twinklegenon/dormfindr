@@ -25,7 +25,7 @@ img {
 .search-bar-menu {
   position: absolute;
   top: 150px;
-  left: 20px;
+  left: 50px;
   width: 400px;
   border-radius: 10px;
   display: flex;
@@ -45,7 +45,7 @@ img {
 .sort-dropdown {
   position: absolute;
   top: 150px;
-  right: 20px;
+  right: 60px;
 }
 .dormitories-grid {
   display: grid;
@@ -53,9 +53,9 @@ img {
   gap: 20px;
   margin-top: 10px;
   position: absolute;
-  top: 220px; /* Adjust as needed */
-  left: 0px; /* Adjust as needed */
-  z-index: 1; /* Place the grid in front of other elements */
+  top: 220px; 
+  left: 0px; 
+  z-index: 1; 
   width: 80%;
 
 }
@@ -63,7 +63,7 @@ img {
 .dorm-card {
   background-color: white;
   border-radius: 20px;
-  width: 350px;
+  width: 400px;
   height: 350px;
   text-align: center;
   display: flex;
@@ -71,37 +71,65 @@ img {
   align-items: center;
   padding: 10px;
   margin-top: 30px;
+  margin-left: 50px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+.dorm-card .upper-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 20px;
+}
+
+.dorm-card .location-price {
+  display: flex;
+  flex-direction: column;
+}
+
+.dorm-card .bottom-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .dorm-card img {
-  width: 100%;
+  width: 400px;
   height: 180px;
   object-fit: cover;
-  border-radius: 20px;
+  border-radius: 5%;
+  margin-top: 0;
 }
 
 .dorm-card h3 {
-  font-size: 20px;
+  font-size: 22px;
   margin: 0;
 }
 
+.dorm-card .location-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.dorm-card .location-container img {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+}
+
 .dorm-card p {
-  margin-top: 0;
-  color: #000000;
-  z-index: 1;
-}
-.dorm-card .location {
-  font-style: italic;
+  font-size: 18px;
+  color: #777;
+  margin: 0;
 }
 
-.dorm-card .price {
-  font-weight: bold;
-}
-
-.dorm-card .rating {
-  color: #E7A523;
-  font-weight: bold;
+.dorm-card .ratings {
+  font-size: 18px;
+  color: #777;
+  padding-right: 100px;
 }
 
 .dorm-card button {
@@ -113,8 +141,10 @@ img {
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s;
-  z-index: 1;
+}
 
+.dorm-card button:hover {
+  background-color: #E7D523;
 }
 
 

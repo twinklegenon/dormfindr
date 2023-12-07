@@ -23,7 +23,10 @@ const SignUpScreen = () => {
     if (password !== confirmPassword) {
       setError('Passwords do not match.');
       return; // Exit the function if the passwords do not match
+   
+    
     }
+    
 
 
     // Construct the user object
@@ -37,9 +40,13 @@ const SignUpScreen = () => {
       // Replace with your backend endpoint
       const response = await axios.post('http://localhost:4000/api/dormfindr/signup', newUser);
       // If the signup is successful, navigate to the account verification page
-      navigate("/login");
+      navigate("/account-verification");
     } catch (error) {
-      if (error.response) {
+      if (error.response && error.response.status === 400 && error.response.data.message === 'User already exists') {
+        // If the backend returns a 400 status with a 'User already exists' message, handle it here
+        setError('A user with this email already exists. Please log in or use a different email.')
+      }
+      else if (error.response) {
         // The request was made and the server responded with a status code
         // that falls out of the range of 2xx
         console.error('Signup error', error.response.data);
@@ -57,6 +64,18 @@ const SignUpScreen = () => {
 
   const goToTerms = () => {
     navigate("/terms");
+  };
+
+  const handleVerify = async () => {
+    try {
+      // Replace with your backend endpoint
+      const response = await axios.post('http://localhost:4000/api/dormfindr/sendEmail', { email: email });
+      console.log(response.data.message);
+      // Show some success message or handle the response further
+    } catch (error) {
+      console.error('Verification email error', error);
+      // Handle the error here, such as displaying a notification to the user
+    }
   };
 
   return (

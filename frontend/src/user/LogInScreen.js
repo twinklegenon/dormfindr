@@ -20,7 +20,7 @@ const LogInScreen = () => {
     try {
       const response = await axios.post('http://localhost:4000/api/dormfindr/login', { email, password });
       if (response.status === 200) {
-        navigate('/OTPScreen');
+        navigate('/home');
       } else {
         setError('Login failed, please try again.');
       }
