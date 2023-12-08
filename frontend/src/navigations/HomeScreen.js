@@ -8,11 +8,19 @@ import sampleDorm1Image from "../images/sampleDorm1Image.png";
 import sampleDorm2Image from "../images/sampleDorm2Image.png";
 import sampleDorm3Image from "../images/sampleDorm3Image.png";
 import locationIcon from "../images/Location.png"
+import { useNavigate } from 'react-router-dom';
 
 const HomeScreen = () => {
+  const navigate = useNavigate();
+  const [dormLocation, setDormLocation] = useState(null);
   const [searchInput, setSearchInput] = useState("");
   const [suggestions, setSuggestions] = useState([]);
-
+  
+  const viewLocation = (lat, lng) => {
+    setDormLocation({ lat, lng });
+    navigate('/map', { state: { lat, lng } });
+  };
+  
   const handleSearchInput = (e) => {
     const input = e.target.value;
     setSearchInput(input);
@@ -59,7 +67,7 @@ const HomeScreen = () => {
               <p>Price: ₱2500/month</p>
               <div className="bottom-content">
                 <p className="ratings">Ratings: ★★★★☆</p>
-                <button className="view-dorm-button">View Dorm</button>
+                <button className="view-dorm-button" onClick={() => viewLocation(14.624872,121.060946)}>View Location</button>
               </div>
             </div>
             <div className="inner-box">
@@ -72,7 +80,7 @@ const HomeScreen = () => {
               <p>Price: ₱2000/month</p>
               <div className="bottom-content">
                 <p className="ratings">Ratings: ★★★★★</p>
-                <button className="view-dorm-button">View Dorm</button>
+                <button className="view-dorm-button" onClick={() => viewLocation(14.628220,121.061890)}>View Location</button>
               </div>
             </div>
             <div className="inner-box">
@@ -85,7 +93,7 @@ const HomeScreen = () => {
               <p>Price: ₱3500/month</p>
               <div className="bottom-content">
                 <p className="ratings">Ratings: ★★★☆☆</p>
-                <button className="view-dorm-button">View Dorm</button>
+                <button className="view-dorm-button" onClick={() => viewLocation(14.627424,121.060332)}>View Location</button>
               </div>
             </div>
           </div>

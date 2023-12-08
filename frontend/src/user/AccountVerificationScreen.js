@@ -53,7 +53,7 @@ const AccountVerificationScreen = () => {
             onChange={(e) => setOtp(e.target.value)}
             required
           />
-          <button type="submit" className="verify-button" disabled={isLoading}>
+          <button type="submit" className="verify-button" >
             {isLoading ? 'Verifying...' : 'Submit'}
           </button>
           {error && <div className="error-message">{error}</div>}
