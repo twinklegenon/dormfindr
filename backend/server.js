@@ -4,12 +4,12 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 const express = require('express');
 const bodyParser = require('body-parser');
-const { check, validationResult } = require('express-validator');
 const dormfindrRoutes = require('./routes/dormListing');
 const dormfindrRoutes2 = require('./routes/SignUp');
 const loginRoutes = require('./routes/login'); // Require the login routes
 const emailRoutes = require("./routes/email");
 const cors = require('cors');
+const verifyOTPRoutes = require('./routes/verifyOTP');
 
 // express app
 const app = express();
@@ -31,8 +31,7 @@ app.use((req, res, next) => {
 app.use('/api/dormfindr/dormlisting', dormfindrRoutes);
 app.use('/api/dormfindr/signup', dormfindrRoutes2);
 app.use('/api/dormfindr/login', loginRoutes);
-app.use('/api/dormfindr/account-verification', emailRoutes);
-
+app.use('/api/dormfindr/account-verification', verifyOTPRoutes);
 // Error handling middleware
 app.use((error, req, res, next) => {
   console.error(error);

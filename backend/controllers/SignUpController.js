@@ -37,11 +37,15 @@ const createProfile = async (req, res) => {
       return res.status(400).json({ message: 'User already exists' });
     }
 
+    
     // Create the user profile in the database
     const profile = await Profile.create({ username, email, password });
 
     // Generate OTP
     const otp = generateOTP();
+    profile.otp = otp;
+    profile.otpTimestamp = new Date();
+    await profile.save();
 
     // Send OTP to user's email
     const subject = 'Account Verification';
@@ -62,8 +66,6 @@ const createProfile = async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 };
-
-
 
 
 // Delete profile
@@ -102,5 +104,5 @@ module.exports = {
   getProfile,
   createProfile,
   deleteProfile,
-  updateProfile
+  updateProfile,
 };

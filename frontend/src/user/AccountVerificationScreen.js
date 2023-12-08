@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 import "./AccountVerificationScreen.css"
-import fadpage1 from "../images/accveriwobutton.png";
+import VerifyBackground from "../images/accveriwobutton.png";
 import { useNavigate } from "react-router-dom"; 
 
 const AccountVerificationScreen = () => {
   const navigate = useNavigate(); 
-  const [userEmail, setUserEmail] = useState(''); // Assuming you'll get this from user input or session
+  const [userEmail, setUserEmail] = useState(''); 
+  const [otp, setOtp] = useState("");
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const navigateToVerification = async () => {
+  const handleOTPVerification = async (event) => {
+    event.preventDefault(); // Prevent the default form submit action
     setIsLoading(true);
     setError(null);
     try {
@@ -18,31 +20,44 @@ const AccountVerificationScreen = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email: userEmail }),
+        body: JSON.stringify({ email: userEmail, otp: otp }),
       });
-
+      
       const data = await response.json();
       if (response.ok && data.success) {
-        navigate("/OTP");
+        navigate("/login"); // Navigate to login on success
       } else {
-        setError(data.error || 'Failed to verify account');
+        setError(data.message || 'Failed to verify account'); // Show error message from response
       }
     } catch (error) {
-      setError("Error sending email: " + error.message);
+      setError("Error verifying OTP: " + error.message); // Show network or server error
     }
     setIsLoading(false);
   };
 
   return (
-    <div className="Account-screen">
+    <div className="Account-screen" style={{ backgroundImage: `url(${VerifyBackground})` }}>
       <div className="Account-container">
-        <div className="verify-container">
-            <button className="verify-button" onClick={navigateToVerification} disabled={isLoading}>
-              {isLoading ? 'Verifying...' : 'Verify Your Account'}
-            </button>
-        </div>
-        {error && <p className="error">{error}</p>} {/* Display error message */}
-        <img src={fadpage1} alt="Image 1" />
+        <form className="verify-container" onSubmit={handleOTPVerification}>
+          <input
+            type="email"
+            placeholder="Enter Email"
+            value={userEmail}
+            onChange={(e) => setUserEmail(e.target.value)}
+            required
+          />
+          <input
+            type="text"
+            placeholder="Enter OTP"
+            value={otp}
+            onChange={(e) => setOtp(e.target.value)}
+            required
+          />
+          <button type="submit" className="verify-button" disabled={isLoading}>
+            {isLoading ? 'Verifying...' : 'Submit'}
+          </button>
+          {error && <div className="error-message">{error}</div>}
+        </form>
       </div>
     </div>
   );
