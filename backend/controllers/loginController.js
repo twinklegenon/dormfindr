@@ -15,7 +15,7 @@ const login = async (req, res) => {
 
     // Compare plaintext passwords
     if (password !== user.password) {
-      return res.status(400).json({ message: 'Invalid credentials' });
+      return res.status(400).json({ message: 'Wrong Password, Enter Again' });
     }
 
     // Create token
