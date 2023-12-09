@@ -10,12 +10,31 @@ const LogInScreen = () => {
   const [email, setEmail] = useState(''); // State for email
   const [password, setPassword] = useState(''); // State for password
   const [error, setError] = useState('');
+  const [selectedRole, setSelectedRole] = useState("TIP Commnunity", "Dormitory Provider");
+
+  const handleRoleChange = (event) => {
+    setSelectedRole(event.target.value)
+  };
+
 
   const handleLogIn = async () => {
-    if (!email.endsWith('@tip.edu.ph')) {
-      setError('Only email addresses with the "tip.edu.ph" domain are allowed.');
-      return; // Exit the function to prevent further execution
+    let emailValidation = true;
+
+    if (selectedRole === "TIP Community") {
+      emailValidation = email.endsWith("@tip.edu.ph");
+      if (!emailValidation) {
+        setError('Only email addresses with the "@tip.edu.ph" domain are allowed for TIP Community.')
+        return;
+      }
     }
+
+    if (selectedRole === "Dormitory Provider") {
+      emailValidation = email.endsWith("@gmail.com");
+      if (!emailValidation) {
+        setError('This organization email is not suitable for this Log In. Please use personal email.')
+        return;
+      }
+    };
 
     try {
       const response = await axios.post('http://localhost:4000/api/dormfindr/login', { email, password });
@@ -55,9 +74,13 @@ const LogInScreen = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <button className="login-click" onClick={handleLogIn}>
-          Log In
-        </button>
+        <div className="role-dropdown-container">
+          <select value={selectedRole} onChange={handleRoleChange}>
+            <option value="TIP Community">TIP Community</option>
+            <option value="Dormitory Provider">Dormitory Provider</option>
+          </select>
+        </div>
+        <button className="login-click" onClick={handleLogIn}>Login as {selectedRole}</button>
         <p>
           Don't have an account? <span className="link" onClick={() => navigate('/signup')}>Sign Up</span>
           <br />

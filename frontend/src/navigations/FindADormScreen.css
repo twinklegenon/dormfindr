@@ -26,12 +26,14 @@ img {
   position: absolute;
   top: 150px;
   left: 50px;
-  width: 400px;
+  width: 425px;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   color: #000000;
+  z-index: 1000;
 }
+
 .search-bar-menu input {
   width: 400px;
   border: none;
@@ -40,6 +42,28 @@ img {
   margin-bottom: 10px;
   color: #000000;
   background-color: #fffbfb;
+}
+
+.suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-top: none;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.suggestion {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.suggestion:hover {
+  background-color: #f0f0f0;
 }
 
 .sort-dropdown {
@@ -63,88 +87,140 @@ img {
 .dorm-card {
   background-color: white;
   border-radius: 20px;
-  width: 400px;
+  width: 350px;
   height: 350px;
   text-align: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
   padding: 10px;
   margin-top: 30px;
-  margin-left: 50px;
+  margin-left: 90px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.dorm-card .upper-content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding-bottom: 20px;
-}
-
-.dorm-card .location-price {
-  display: flex;
-  flex-direction: column;
-}
-
-.dorm-card .bottom-content {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}
-
 .dorm-card img {
-  width: 400px;
+  width: 330px;
   height: 180px;
   object-fit: cover;
   border-radius: 5%;
+  align-self: center;
   margin-top: 0;
 }
 
 .dorm-card h3 {
-  font-size: 22px;
+  font-size: 20px;
   margin: 0;
 }
 
-.dorm-card .location-container {
+.dorm-card  .location-container {
   display: flex;
   align-items: center;
-  margin-bottom: 8px;
 }
 
-.dorm-card .location-container img {
+.dorm-card  .location-container img {
   width: 20px;
   height: 20px;
-  margin-right: 8px;
 }
 
-.dorm-card p {
-  font-size: 18px;
+.dorm-card  p {
+  font-size: 13px;
   color: #777;
   margin: 0;
 }
 
-.dorm-card .ratings {
-  font-size: 18px;
-  color: #777;
-  padding-right: 100px;
+.dorm-card  .price-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 5px;
 }
 
-.dorm-card button {
-  background-color: #E7A523;
-  color: #000000;
-  border: none;
-  border-radius: 10px;
-  padding: 10px 20px;
-  font-size: 16px;
+.dorm-card  .price-container img {
+  width: 20px;
+  height: 20px;
+}
+
+.price-details {
+  display: flex;
+  align-items: center;
+}
+
+.dorm-card  .ratings-container {
+  display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 5px;
+}
+.room-details {
+  display: flex;
+  align-items: center;
+}
+
+.contact-details {
+  display: flex;
+  align-items: center;
+}
+
+.ratings-details {
+  display: flex;
+  align-items: center;
+}
+
+.dorm-card  .ratings-container img {
+  width: 20px;
+  height: 20px;
+}
+
+.dorm-card  .bottom-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 15px;
+}
+/* Modal styles */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 500;
+}
+
+.modal-content {
+  background-color: #232323;
+  color: #dedede;
+  padding-top: 50px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 20px;
+  max-width: 400px;
+  text-align: center;
+}
+
+.close {
+  position: absolute;
+  top: 260px;
+  right: 550px;
+  font-size: 30px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  color: #dedede;
 }
 
-.dorm-card button:hover {
-  background-color: #E7D523;
+.close:hover {
+  color: #E7A523;
+}
+
+.highlight {  
+  background-color: #f0f0f0; 
+  border: 10px solid #ffcc00; 
 }
 
 

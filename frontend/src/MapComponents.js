@@ -1,48 +1,56 @@
 import React, { useEffect } from 'react';
 import L from 'leaflet';
-import { useLocation } from 'react-router-dom'; // Import useLocation hook
+import { useLocation } from 'react-router-dom';
 import './MapComponent.css'; // Your CSS file for styles
 
 const MyMapComponent = () => {
-  const location = useLocation(); // Hook to get location state
+  const location = useLocation();
+  let map; // Define map variable outside useEffect for broader scope if needed
 
   useEffect(() => {
-    const defaultCoords = [51.505, -0.09]; // Default coordinates
-    const zoomLevel = 40; // Default zoom level
+    // Parse the query parameters
+    const queryParams = new URLSearchParams(location.search);
+    const lat = parseFloat(queryParams.get('lat'));
+    const lng = parseFloat(queryParams.get('lng'));
+    const coords = lat && lng ? [lat, lng] : [51.505, -0.09]; // Default to London if no parameters provided
+    const zoomLevel = 40; // Adjusted zoom level to a more standard value
 
-    // Check if the location state is available, otherwise use default coordinates
-    const coords = location.state ? [location.state.lat, location.state.lng] : defaultCoords;
-
-    let map = window.myMap;
-    if (!map) {
-      // Initialize the map if it hasn't been created yet
-      map = L.map('map-container').setView(coords, zoomLevel);
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '© OpenStreetMap contributors'
-      }).addTo(map);
-      window.myMap = map;
-    } else {
-      // Map exists, so just set the new view
-      map.setView(coords, zoomLevel);
-      setTimeout(() => map.invalidateSize(), 100); // Adjust size if container size changed
-    }
+    map = L.map('map-container').setView(coords, zoomLevel);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors',
+    }).addTo(map);
 
     return () => {
-      // Clean up map when the component is unmounted
-      map.remove();
-      window.myMap = null;
+      map.remove(); // Clean up the map instance when the component unmounts
     };
-  }, [location.state]); // Dependency array now includes location.state to re-run effect when it changes
+  }, [location.search]); // Depend on location.search to re-run the effect when URL query params change
+
+  // This function will be called when the fullscreen button is clicked
+  const goFullScreen = () => {
+    const element = document.getElementById('map-container');
+    if (element.requestFullscreen) {
+      element.requestFullscreen();
+    } else if (element.mozRequestFullScreen) { /* Firefox */
+      element.mozRequestFullScreen();
+    } else if (element.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
+      element.webkitRequestFullscreen();
+    } else if (element.msRequestFullscreen) { /* IE/Edge */
+      element.msRequestFullscreen();
+    }
+  };
 
   const goBack = () => {
-    window.history.back(); // Go back to previous page
+    window.history.back();
   };
 
   return (
-    <div id="map-container" style={{ height: '500px', width: '100%', position: 'relative' }}>
+    <div style={{ height: '100vh', width: '100%', position: 'relative' }}>
+      <div id="map-container" style={{ height: '100%', width: '100%' }}></div>
       <button onClick={goBack} className="back-button">
         Back
+      </button>
+      <button onClick={goFullScreen} style={{ position: 'absolute', top: '10px', right: '10px' }}>
+        Fullscreen
       </button>
     </div>
   );

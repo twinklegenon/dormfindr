@@ -13,27 +13,49 @@ const SignUpScreen = () => {
   const [password, setPassword] = useState(''); // State for password
   const [error, setError] = useState('');
   const [confirmPassword, setConfirmPassword] = useState(''); // State for confirm password
+  const [selectedRole, setSelectedRole] = useState("TIP Commnunity", "Dormitory Provider");
+
+  const handleRoleChange = (event) => {
+    setSelectedRole(event.target.value);
+  };
 
   const handleSignUp = async () => {
-    if (!email.endsWith('@tip.edu.ph')) {
-      setError('Only email addresses with the "tip.edu.ph" domain are allowed.');
-      return; // Exit the function to prevent further execution
+    let emailValidation = true;
+
+    if (selectedRole === "TIP Community") {
+      emailValidation = email.endsWith("@tip.edu.ph");
+      if (!emailValidation) {
+        setError('Only email addresses with the "@tip.edu.ph" domain are allowed for TIP Community.')
+        return;
+      }
     }
+
+    if (selectedRole === "Dormitory Provider") {
+      emailValidation = email.endsWith("@gmail.com");
+      if (!emailValidation) {
+        setError('This organization email is not suitable for this sign up. Please use personal email.')
+        return;
+      }
+    }
+    
+    //if (!email.endsWith('@tip.edu.ph')) {
+    //  setError('Only email addresses with the "tip.edu.ph" domain are allowed.');
+    //  return; // Exit the function to prevent further execution
+    //}
 
     if (password !== confirmPassword) {
       setError('Passwords do not match.');
       return; // Exit the function if the passwords do not match
    
     
-    }
+    };
     
-
-
     // Construct the user object
     const newUser = {
       username,
       email,
       password,
+      role: selectedRole,
     };
 
     try {
@@ -101,7 +123,13 @@ const SignUpScreen = () => {
             onChange={(e) => setConfirmPassword(e.target.value)} 
           />
         </div>
-        <button className="signup-click" onClick={handleSignUp}>Sign Up</button>
+        <div className="role-dropdown-container">
+          <select value={selectedRole} onChange={handleRoleChange}>
+            <option value="TIP Community">TIP Community</option>
+            <option value="Dormitory Provider">Dormitory Provider</option>
+          </select>
+        </div>
+        <button className="signup-click" onClick={handleSignUp}>Sign Up as {selectedRole}</button>
         <p>
           Already have an account? <a href="/login">Log In</a>
           <br />

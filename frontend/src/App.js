@@ -15,6 +15,7 @@ import BeOneScreen from "./user/BeOneScreen";
 import OTPScreen from "./user/OTPScreen";
 import MapComponent from './MapComponents'; // Ensure this path is correct
 import 'leaflet/dist/leaflet.css';
+import 'leaflet.fullscreen/Control.FullScreen.css';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/login" element={<LogInScreen />} />
           <Route path="/signup" element={<SignUpScreen />} />
           <Route path="/home" element={<HomeScreen />} />
+          <Route path="/find-a-dorm" element={<FindADormScreen />} />
           <Route path="/map" element={<><MapComponent /></>} />
           <Route path="/about-us" element={<AboutUsScreen />} />
           <Route path="/help" element={<HelpScreen />} />

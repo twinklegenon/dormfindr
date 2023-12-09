@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
 import "./FindADormScreen.css";
 import NavigationButtons from './NavigationButtons.js';
 import fadpage1 from "../images/findadorm.png";
@@ -13,94 +14,151 @@ import sampleDorm7Image from "../images/sampleDorm7Image.png";
 import sampleDorm8Image from "../images/sampleDorm8Image.png";
 import sampleDorm9Image from "../images/sampleDorm9Image.png";
 import locationIcon from "../images/Location.png"
+import price from "../images/price.png";
+import star from "../images/star.png";
+import rooms from "../images/Door.png";
+import contact from "../images/Phone.png";
 
 const FindADormScreen = () => {
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const [selectedDormParams, setSelectedDormParams] = useState(params.get("dorm"));
   const [searchTerm, setSearchTerm] = useState(""); 
   const [sortOption, setSortOption] = useState(""); 
+  const [showModal, setShowModal] = useState(false);
+  const [selectedDorm, setSelectedDorm] = useState(null);
+  const [suggestions, setSuggestions] = useState([]);
+
+  const handleBookNow = (dorm) => {
+    setShowModal(true);
+    setSelectedDorm(dorm);  
+  };
+
+  const handleViewLocation = (dorm) => {
+    // Implement your logic to view location for the specific dorm
+    console.log(`Viewing location for ${dorm.name}`);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+    setSelectedDorm(null);
+  };
 
   // Function to handle search input change
   const handleSearchChange = (e) => {
-    setSearchTerm(e.target.value);
-    // You can add logic here to filter dorms based on the search term
+    const input = e.target.value;
+    setSearchTerm(input);
+
+    // Logic to filter suggestions based on the input (you can modify this as needed)
+    const filteredSuggestions = dormsData
+      .map((dorm) => dorm.name)
+      .filter((name) => name.toLowerCase().includes(input.toLowerCase()));
+
+    setSuggestions(filteredSuggestions);
   };
 
-  // Function to handle sort option change
   const handleSortChange = (e) => {
     setSortOption(e.target.value);
-    // You can add logic here to sort dorms based on the selected option
+
+  };
+
+  const handleSuggestionClick = (suggestion) => {
+    setSearchTerm(suggestion); // Replace the entire input value with the clicked suggestion
+    setSelectedDormParams(suggestion); // Update selected dorm parameters
+    setSelectedDorm(suggestion);
+    setSuggestions([]); 
   };
 
   // Sample dormitory data (you can replace this with your actual data)
-  const dormitories = [
+  const dormsData = [
     {
       name: "TIP Residence",
-      location: "Anonas, Quezon City",
+      description: "A comfortable dorm located in Anonas, Quezon City.",
       price: "₱2500/month",
-      rating: "★★★★☆",
-      image: sampleDorm1Image, 
+      ratings: "4.2 Ratings",
+      rooms: "4 Available rooms",
+      contact: "tipresidence@tip.edu.ph",
+      image: sampleDorm1Image,
+      location: "Anonas, Quezon City",
     },
-
     {
       name: "Ermin Garcia Dormitory",
-      location: "Ermin Garcia St. Quezon City",
+      description: "Affordable dormitory situated in Ermin Garcia St. Quezon City.",
       price: "₱2000/month",
-      rating: "★★★★★",
-      image: sampleDorm2Image, 
+      ratings: "5 Ratings",
+      rooms: "8 Available rooms",
+      contact: "ermindormitory@gmail.com",
+      image: sampleDorm2Image,
+      location: "Ermin Garcia St. Quezon City",
     },
-
     {
       name: "Portalet Dormitory",
-      location: "Potsdam St. Quezon City",
+      description: "Portalet Dormitory located in Potsdam St. Quezon City.",
       price: "₱3500/month",
-      rating: "★★★☆☆",
-      image: sampleDorm3Image, 
+      ratings: "3.6 Ratings",
+      rooms: "2 Available rooms",
+      contact: "potaletdorm@gmail.com",
+      image: sampleDorm3Image,
+      location: "Potsdam St. Quezon City",
     },
 
     {
       name: "Dorm 4",
-      location: "Location 4",
-      price: "$1000",
-      rating: "★★★★★",
+      location: "Unavailable",
+      price: "Unavailable",
+      ratings: "Unavailable",
+      rooms: "Unavailable",
+      contact: "Unavailable",
       image: sampleDorm4Image, 
     },
 
     {
       name: "Dorm 5",
-      location: "Location 5",
-      price: "$1000",
-      rating: "★★★★★",
+      location: "Unavailable",
+      price: "Unavailable",
+      ratings: "Unavailable",
+      rooms: "Unavailable",
+      contact: "Unavailable",
       image: sampleDorm5Image, 
     },
 
     {
       name: "Dorm 6",
-      location: "Location 6",
-      price: "$1000",
-      rating: "★★★★★",
+      location: "Unavailable",
+      price: "Unavailable",
+      ratings: "Unavailable",
+      rooms: "Unavailable",
+      contact: "Unavailable",
       image: sampleDorm6Image, 
     },
 
     {
       name: "Dorm 7",
-      location: "Location 7",
-      price: "$1000",
-      rating: "★★★★★",
+      location: "Unavailable",
+      price: "Unavailable",
+      ratings: "Unavailable",
+      rooms: "Unavailable",
+      contact: "Unavailable",
       image: sampleDorm7Image, 
     },
 
     {
       name: "Dorm 8",
-      location: "Location 8",
-      price: "$1000",
-      rating: "★★★★★",
+      location: "Unavailable",
+      price: "Unavailable",
+      ratings: "Unavailable",
+      rooms: "Unavailable",
+      contact: "Unavailable",
       image: sampleDorm8Image, 
     },
 
     {
       name: "Dorm 9",
-      location: "Location 9",
-      price: "$1000",
-      rating: "★★★★★",
+      location: "Unavailable",
+      price: "Unavailable",
+      ratings: "Unavailable",
+      rooms: "Unavailable",
+      contact: "Unavailable",
       image: sampleDorm9Image, 
     },
     // Add more dormitories as needed
@@ -117,6 +175,19 @@ const FindADormScreen = () => {
             value={searchTerm}
             onChange={handleSearchChange}
           />
+          {searchTerm && suggestions.length > 0 && (
+            <div className="suggestions">
+              {suggestions.map((suggestion, index) => (
+                <div
+                  key={index}
+                  className="suggestion"
+                  onClick={() => handleSuggestionClick(suggestion)}
+                >
+                  {suggestion}
+                </div>
+              ))}
+            </div>
+          )}
         </div>
         {/* Sort by dropdown menu */}
         <div className="sort-dropdown">
@@ -132,25 +203,54 @@ const FindADormScreen = () => {
 
         {/* Dormitories grid in front of Image 1 */}
         <div className="dormitories-grid">
-          {dormitories.map((dorm, index) => (
-            <div key={index} className="dorm-card">
+          {dormsData.map((dorm, index) => (
+            <div key={index} className={`dorm-card ${dorm.name === selectedDormParams ? 'highlight' : ''}`}
+            onClick={() => setSelectedDormParams(dorm.name)}>
               <img src={dorm.image} alt={dorm.name} />
-              <div className="upper-content">
-                <h3>{dorm.name}</h3>
-                <div className="location-price">
-                  <div className="location-container">
-                    <img src={locationIcon} alt="Location Icon" />
-                    <p>{dorm.location}</p>
-                  </div>
-                  <p>Price: {dorm.price}</p>
+              <h3>{dorm.name}</h3>
+              <div className="location-container">
+                <img src={locationIcon} alt="Location Icon" />
+                <p>: {dorm.location}</p>
+              </div>
+              <div className="price-container">
+                <div className="price-details">
+                  <img src={price} alt="Price Icon" />
+                  <p>: {dorm.price}</p>
+                </div>
+                <div className="room-details">
+                  <img src={rooms} alt="Rooms Icon" />
+                  <p>: {dorm.rooms}</p>
+                </div>
+              </div>
+              <div className="ratings-container">
+                <div className="ratings-details">
+                  <img src={star} alt="Ratings Icon" />
+                  <p>: {dorm.ratings}</p>
+                </div>
+                <div className="contact-details">
+                  <img src={contact} alt="Contact Icon" />
+                  <p>: {dorm.contact}</p>
+                  {/* Add your room icons or details here */}
                 </div>
               </div>
               <div className="bottom-content">
-                <p className="ratings">Ratings: {dorm.rating}</p>
-                <button>View Dorm</button>
+                <button className="book-now-button" onClick={() => handleBookNow(dorm)}>Book Now</button>
+                <button className="view-location-button" onClick={() => handleViewLocation(dorm)}>View Location</button>
               </div>
             </div>
           ))}
+          {/* Modal */}
+          {showModal && selectedDorm && (
+              <div className="modal">
+                <div className="modal-content">
+                  <span className="close" onClick={closeModal}>
+                    &times;
+                  </span>
+                  <h2>{`Dorm '${selectedDorm.name}' is booked successfully!`}</h2>
+                  <p>Kindly wait for dorm provider's confirmation.</p>
+                </div>
+              </div>
+            )}
         </div>
 
         {/* Image 1 */}

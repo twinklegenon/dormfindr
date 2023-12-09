@@ -1,19 +1,198 @@
+.profile-screen {
+  width: auto;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-container {
+  position: relative;
+}
+
+/* Style for the gray container */
+.side-container {
+position: absolute;
+top: 3.9%;
+left: 0;
+width: 25%;
+height: 28.84%;
+background-color: #3b3b3b;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: space-around; /* Adjust this as needed */
+}
+
+/* Style for the pressable text */
+.pressable-text {
+color: white;
+cursor: pointer;
+font-weight: bold;
+font-size: 150%;
+border-bottom: 1px solid white; /* Add a white line between the text */
+padding-bottom: 5px;
+}
+
+/* Style for the middle container */
+.middle-container {
+position: absolute;
+top: 15%; /* Adjust the top position as needed */
+left: 27%;
+width: 49%;
+height: 26%;
+background-color: #3b3b3b;
+display: flex;
+flex-direction: column;
+align-items: flex-start; /* Align text to the left */
+justify-content: space-around; /* Adjust this as needed */
+}
+
+/* Style for the text labels and text boxes */
+.text-label {
+color: white;
+font-weight: bold;
+font-size: 100%;
+margin-bottom: 5px; /* Adjust the margin between text and text box */
+margin-right: 100px;
+align-items:flex-start;
+}
+
+.text-box {
+width: 90px; /* Adjust the width as needed */
+padding: 10px;
+margin-top: -10px;
+margin-left: 6px;
+}
+
+.aaron-image {
+width: 15%;
+height: 10%; /* Adjust the width as needed */
+position: absolute;
+top: 5%;
+right: 5%; /* Adjust the right position as needed */
+}
+
+/* Style for the right-side container */
+.aaron-image-container {
+position: absolute;
+top: 15%;  /* Adjust the top position as needed */
+right: 5%; /* Adjust the right position as needed */
+text-align: center;
+color: white;
+}
+
+.aaron-image-text {
+margin: 5px 0;
+font-size: 14px; /* Adjust the font size as needed */
+}
+/* ProfileScreen.css */
 .find-a-dorm-screen {
-    width: auto;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  
-  .find-a-dorm-container {
-    position: relative;
-  }
+width: auto;
+height: auto;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+}
+
+img {
+display: block;
+width: 100%;
+height: 100%;
+object-fit: cover;
+}
+
+.help-page {
+display: flex;
+text-align: center;
+position: relative;
+}  
+
+.find-a-dorm-container {
+position: relative;
+}
+
+/* Style for the gray container */
+.side-container {
+position: absolute;
+top: 3.9%;
+left: 0;
+width: 25%;
+height: 28.84%;
+background-color: #3b3b3b;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: space-around; /* Adjust this as needed */
+}
+
+/* Style for the pressable text */
+.pressable-text {
+color: white;
+cursor: pointer;
+font-weight: bold;
+font-size: 150%;
+border-bottom: 1px solid white; /* Add a white line between the text */
+padding-bottom: 5px;
+}
+
+/* Style for the middle container */
+.middle-container {
+position: absolute;
+top: 5%;
+left: 27%;
+width: 49%;
+height: 26%;
+background-color: #3b3b3b;
+display: flex;
+flex-direction: column;
+align-items: flex-start; /* Align text to the left */
+justify-content: space-around; /* Adjust this as needed */
+}
+
+/* Style for the text labels and text boxes */
+.text-label {
+color: white;
+font-weight: bold;
+font-size: 100%;
+margin-bottom: 5px; /* Adjust the margin between text and text box */
+margin-right: 100px;
+align-items:flex-start;
+}
+
+.text-box {
+width: 310%;
+padding: 10px;
+margin-top: -10px;
+margin-left: 6px;
+}
+
+.aaron-image {
+width: 15%;
+height: 10%; /* Adjust the width as needed */
+position: absolute;
+top: 5%;
+right: 5%; /* Adjust the right position as needed */
+}
+
+/* Style for the right-side container */
+.aaron-image-container {
+position: absolute;
+top: 15%;  /* Adjust the top position as needed */
+right: 5%; /* Adjust the right position as needed */
+text-align: center;
+color: white;
+}
+
+.aaron-image-text {
+margin: 5px 0;
+font-size: 14px; /* Adjust the font size as needed */
+}
