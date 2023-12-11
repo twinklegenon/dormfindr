@@ -4,11 +4,11 @@
   "description": "Elevate Student Housing Navigation",
   "engines": {
     "node": "20.x",
-    "npm": "8.x" // Update this line to match a supported npm version
+    "npm": "8.x" 
   },
   "scripts": {
     "start": "node server.js",
-    "heroku-postbuild": "npm run build" // Modify or remove if not needed
+    "heroku-postbuild": "npm run build"
   },
   "dependencies": {
     "express": "^4.17.1",
