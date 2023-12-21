@@ -13,7 +13,7 @@
   width: 120px;
   height: 120px;
   position: absolute;
-  top: 110px;
+  top: 90px;
   left: 50%;
   transform: translateX(-50%);
 }
@@ -104,8 +104,3 @@ b {
   font-weight: bold;
   cursor: pointer;
 }
-/* SignUpScreen.css */
-.error-message {
-  color: red;
-}
-

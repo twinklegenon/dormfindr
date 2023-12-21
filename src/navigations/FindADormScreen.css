@@ -219,8 +219,8 @@ img {
 }
 
 .highlight {  
-  background-color: #f0f0f0; 
-  border: 10px solid #ffcc00; 
+  background-color: #f0f0f0; /* Change this color to your desired highlight color */
+  border: 10px solid #ffcc00; /* Change this color to your desired border color */
 }
 
 

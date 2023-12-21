@@ -2,7 +2,7 @@
 import React from "react";
 import "./ProfileScreen.css";
 import NavigationButtons from './NavigationButtons.js';
-import aaron from "../images/aaron.png";
+import aaron from "../images/user.png";
 import fadpage1 from "../images/bg.png";
 import fadpage2 from "../images/bg2.png";
 import fadpage3 from "../images/information.png";
