@@ -40,7 +40,6 @@ const AccountVerificationScreen = () => {
       <div className="Account-container">
         <form className="verify-container" onSubmit={handleOTPVerification}>
           <input
-            className="otp-input"
             type="email"
             placeholder="Enter Email"
             value={userEmail}
@@ -48,14 +47,13 @@ const AccountVerificationScreen = () => {
             required
           />
           <input
-            className="otp-input"
             type="text"
             placeholder="Enter OTP"
             value={otp}
             onChange={(e) => setOtp(e.target.value)}
             required
           />
-          <button type="submit" className="verify-button" disabled={isLoading}>
+          <button type="submit" className="verify-button" >
             {isLoading ? 'Verifying...' : 'Submit'}
           </button>
           {error && <div className="error-message">{error}</div>}
