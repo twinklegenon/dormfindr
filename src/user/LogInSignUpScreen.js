@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./LogInSignUpScreen.css";
 import Image1 from "../images/landingpage1.png";
-import Image2 from "../images/landing-page.png";
+import Image2 from "../images/cisco-2.png";
 import Image3 from "../images/information.png";
 
 const LogInSignUpScreen = () => {
