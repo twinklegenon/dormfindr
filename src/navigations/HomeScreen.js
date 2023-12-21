@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import "./HomeScreen.css";
 import NavigationButtons from './NavigationButtons.js';
 import homepage1 from "../images/bg.png";
@@ -13,6 +12,8 @@ import price from "../images/price.png";
 import star from "../images/star.png";
 import rooms from "../images/Door.png";
 import contact from "../images/Phone.png";
+import { useNavigate } from 'react-router-dom';
+
 
 const dormsData = [
   {
@@ -24,6 +25,8 @@ const dormsData = [
     contact: "tipresidence@tip.edu.ph",
     image: sampleDorm1Image,
     location: "Anonas, Quezon City",
+    latitude: 14.624872,
+    longitude: 121.060946,
   },
   {
     name: "Ermin Garcia Dormitory",
@@ -34,6 +37,8 @@ const dormsData = [
     contact: "ermindormitory@gmail.com",
     image: sampleDorm2Image,
     location: "Ermin Garcia St. Quezon City",
+    latitude: 14.628220,
+    longitude: 121.061890,
   },
   {
     name: "Portalet Dormitory",
@@ -44,12 +49,14 @@ const dormsData = [
     contact: "potaletdorm@gmail.com",
     image: sampleDorm3Image,
     location: "Potsdam St. Quezon City",
+    latitude: 14.627424,
+    longitude: 121.060332,
   },
   // Add more dorms as needed
 ];
 
 const HomeScreen = () => {
-  const navigate = useNavigate();
+  
   const [searchInput, setSearchInput] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [showModal, setShowModal] = useState(false);
@@ -59,9 +66,10 @@ const HomeScreen = () => {
     setShowModal(true);
     setSelectedDorm(dorm);
   };
-
+  const navigate = useNavigate();
   const handleViewLocation = (dorm) => {
     // Implement your logic to view location for the specific dorm
+    navigate(`/map?lat=${dorm.latitude}&lng=${dorm.longitude}`);
     console.log(`Viewing location for ${dorm.name}`);
   };
 
@@ -78,12 +86,11 @@ const HomeScreen = () => {
       .filter((name) => name.toLowerCase().includes(input.toLowerCase()));
     setSuggestions(filteredSuggestions);
   };
-
   const handleSuggestionClick = (suggestion) => {
     setSearchInput(suggestion);
     navigate(`/find-a-dorm?dorm=${encodeURIComponent(suggestion)}`);
   };
-  
+
   return (
     <div className="home-screen">
       <div className="homepage-container">
@@ -100,7 +107,7 @@ const HomeScreen = () => {
             {/* Dorm Listings */}
             {dormsData.map((dorm) => (
               <div className="inner-box" key={dorm.name}>
-                <img src={dorm.image} alt={`Dorm ${dorm.id}`} />
+                <img src={dorm.image} alt={`Dorm ${dorm.name}`} />
                 <h3>{dorm.name}</h3>
                 <div className="location-container">
                   <img src={locationIcon} alt="Location Icon" />
@@ -124,7 +131,6 @@ const HomeScreen = () => {
                   <div className="contact-details">
                     <img src={contact} alt="Contact Icon" />
                     <p>: {dorm.contact}</p>
-                    {/* Add your room icons or details here */}
                   </div>
                 </div>
                 <div className="bottom-content">
@@ -148,7 +154,6 @@ const HomeScreen = () => {
           </div>
           <img src={homepage1} alt="HomePage 1" />
         </div>
-          
 {/*-----------------------------------------------------------------------------------*/}
           <div className="home-page">
           <img src={homepage2} alt="HomePage 2" />
@@ -159,10 +164,9 @@ const HomeScreen = () => {
               <input
                 type="text"
                 placeholder="Search for dorms"
-                value={searchInput}
                 onChange={handleSearchInput}
               />
-              {searchInput && suggestions.length > 0 && (
+ {searchInput && suggestions.length > 0 && (
                 <div className="suggestions">
                   {suggestions.map((suggestion, index) => (
                     <div
