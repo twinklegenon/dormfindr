@@ -1,0 +1,43 @@
+{
+  "files": {
+    "main.css": "/static/css/main.53364dbf.css",
+    "main.js": "/static/js/main.81c6425a.js",
+    "static/js/488.e01a79d8.chunk.js": "/static/js/488.e01a79d8.chunk.js",
+    "static/media/cisco-2.png": "/static/media/cisco-2.8e7cddbf069e997e634b.png",
+    "static/media/team.png": "/static/media/team.9be785e14a0527c5f921.png",
+    "static/media/bg2.png": "/static/media/bg2.a1cd71e8b50362a07ea7.png",
+    "static/media/information.png": "/static/media/information.27a1e9ded4dae6ab49c9.png",
+    "static/media/landingpage1.png": "/static/media/landingpage1.6fe41ce6a1a05f8dcb03.png",
+    "static/media/mission.png": "/static/media/mission.f2fc9b153b1900941a82.png",
+    "static/media/bg.png": "/static/media/bg.5603841703c6e03d40fc.png",
+    "static/media/sampleDorm9Image.png": "/static/media/sampleDorm9Image.88fa0045b0827f614ccf.png",
+    "static/media/sampleDorm8Image.png": "/static/media/sampleDorm8Image.9388fc2961bc8e6754b5.png",
+    "static/media/accveriwobutton.png": "/static/media/accveriwobutton.567f26606b91a4d31115.png",
+    "static/media/sampleDorm6Image.png": "/static/media/sampleDorm6Image.e26d9bfefcfde4eaef14.png",
+    "static/media/terms1.png": "/static/media/terms1.2d0ef71f5ba92b43906a.png",
+    "static/media/aaron.png": "/static/media/aaron.8be9d1a72522c60f36dd.png",
+    "static/media/terms2.png": "/static/media/terms2.757f737b9e489ca557a2.png",
+    "static/media/terms3-withoutbutton.png": "/static/media/terms3-withoutbutton.4e92a5c77fbde00fd0e2.png",
+    "static/media/findadorm.png": "/static/media/findadorm.7aec2316fd090e164f39.png",
+    "static/media/sampleDorm4Image.png": "/static/media/sampleDorm4Image.9c2e67d1e535745edb3e.png",
+    "static/media/sampleDorm7Image.png": "/static/media/sampleDorm7Image.c2877e04f8ab553c51b0.png",
+    "static/media/sampleDorm5Image.png": "/static/media/sampleDorm5Image.a7a97f7b9d1a808b3677.png",
+    "static/media/splash_bg.png": "/static/media/splash_bg.7a5768449045374c12ae.png",
+    "static/media/imageTop1.png": "/static/media/imageTop1.708003dd32393a79fd1e.png",
+    "static/media/imageTop2.png": "/static/media/imageTop2.a1e31cb227b6b86996c2.png",
+    "static/media/sampleDorm3Image.png": "/static/media/sampleDorm3Image.4aaac13d49f905acac87.png",
+    "static/media/sampleDorm2Image.png": "/static/media/sampleDorm2Image.48f0617e175943e441c7.png",
+    "static/media/sampleDorm1Image.png": "/static/media/sampleDorm1Image.39815046c9878c3bcefb.png",
+    "static/media/user.png": "/static/media/user.52d158c1e34661ec9641.png",
+    "static/media/splash_logo.png": "/static/media/splash_logo.8c7203598e471fd09694.png",
+    "static/media/icon-fullscreen.svg": "/static/media/icon-fullscreen.5c475029ed8df9adae01.svg",
+    "index.html": "/index.html",
+    "main.53364dbf.css.map": "/static/css/main.53364dbf.css.map",
+    "main.81c6425a.js.map": "/static/js/main.81c6425a.js.map",
+    "488.e01a79d8.chunk.js.map": "/static/js/488.e01a79d8.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.53364dbf.css",
+    "static/js/main.81c6425a.js"
+  ]
+}
